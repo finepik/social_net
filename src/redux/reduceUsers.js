@@ -3,11 +3,13 @@ const UNFOLLOW ='UNFOLLOW'
 const SET_USERS='SET_USERS'
 const SET_TOTAL_COUNT='SET_TOTAL_COUNT'
 const ADD_CURRENT_PAGE='ADD_CURRENT_PAGE'
+const TOGGLE_IS_FETCHING='TOGGLE_IS_FETCHING'
 let initialState={
     users: [],
     currentPage:1,
     totalCount:20,
-    amountOfUsers:5
+    amountOfUsers:5,
+    isFetching:true
     }
 /*        {id: 1, photoUrl:'https://bigpicture.ru/wp-content/uploads/2019/04/grandbeauty00.jpg' ,
             followed:true, fullName:'Natasha', status: 'Everything cool', location:{city:'Moscow',country:'Russia'}},
@@ -47,13 +49,16 @@ const reduceUsers=(state=initialState,action)=>{
             return({...state,totalCount: action.totalCount})
         case ADD_CURRENT_PAGE:
             return({...state,currentPage: action.currentPage})
+        case TOGGLE_IS_FETCHING:
+            return({...state,isFetching: action.currentValue})
         default: return state
     }
 }
-export const followAC=(userId)=>{return{type:FOLLOW,userId:userId}}
-export const unfollowAC=(userId)=>{return{type:UNFOLLOW, userId:userId}}
-export const setUsersAC=(users)=>{return{type:SET_USERS, users:users}}
-export const setTotalCountAC=(totalCount)=>{return{type:SET_TOTAL_COUNT, totalCount}}
-export const addCurrentPageAC=(currentPage)=>{return{type:ADD_CURRENT_PAGE, currentPage}}
+export const follow=(userId)=>{return{type:FOLLOW,userId:userId}}
+export const unfollow=(userId)=>{return{type:UNFOLLOW, userId:userId}}
+export const setUsers=(users)=>{return{type:SET_USERS, users:users}}
+export const setTotalCount=(totalCount)=>{return{type:SET_TOTAL_COUNT, totalCount}}
+export const addCurrentPage=(currentPage)=>{return{type:ADD_CURRENT_PAGE, currentPage}}
+export const toggleIsFetching=(currentValue)=>{return{type:TOGGLE_IS_FETCHING, currentValue}}
 
 export default reduceUsers;
