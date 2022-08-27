@@ -7,7 +7,9 @@ class ProfileAPIContainer extends React.Component{
 
     componentDidMount()
     {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {debugger
+        let profileId=this.props.router.params.profileId
+        if (!profileId){profileId=2}
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${profileId}`).then(response => {debugger
 
         this.props.otherProfile(response.data)
         }) //переопределение?????
